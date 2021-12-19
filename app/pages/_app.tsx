@@ -4,10 +4,10 @@ import {
   ErrorComponent,
   ErrorFallbackProps,
   useQueryErrorResetBoundary,
-} from "blitz"
+} from "blitz";
 
 export default function App({ Component, pageProps }: AppProps) {
-  const getLayout = Component.getLayout || ((page) => page)
+  const getLayout = Component.getLayout || ((page) => page);
 
   return (
     <ErrorBoundary
@@ -16,9 +16,11 @@ export default function App({ Component, pageProps }: AppProps) {
     >
       {getLayout(<Component {...pageProps} />)}
     </ErrorBoundary>
-  )
+  );
 }
 
 function RootErrorFallback({ error }: ErrorFallbackProps) {
-  return <ErrorComponent statusCode={error.statusCode || 400} title={error.message || error.name} />
+  return (
+    <ErrorComponent statusCode={error.statusCode || 400} title={error.message || error.name} />
+  );
 }
