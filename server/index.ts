@@ -1,3 +1,4 @@
+import { BASE_URL } from "app/constants";
 import blitz from "blitz/custom-server";
 import { createServer } from "http";
 import five from "johnny-five";
@@ -42,6 +43,7 @@ board.on("ready", () => {
       }
     }).listen(PORT, () => {
       log.success(`Custom server ready on http://localhost:${PORT}`);
+      log.success(`You can enable camera on ${BASE_URL}/webcam`);
     });
   });
 });
