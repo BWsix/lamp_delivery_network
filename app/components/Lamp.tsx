@@ -1,3 +1,5 @@
+import Button from "@mui/material/Button";
+import ButtonGroup from "@mui/material/ButtonGroup";
 import lampMutation from "app/mutations/lampMutation";
 import lampQuery from "app/queries/lampQuery";
 import { useMutation, useQuery } from "blitz";
@@ -8,23 +10,23 @@ export const Lamp = () => {
 
   return (
     <>
-      lamp status: {lampStatus}
-      <div>
-        <button
+      current lamp status : {lampStatus}
+      <ButtonGroup color="primary" size="large" variant="outlined">
+        <Button
           onClick={async () => {
             setQueryData(await toggleLamp(true));
           }}
         >
-          on
-        </button>
-        <button
+          ON
+        </Button>
+        <Button
           onClick={async () => {
             setQueryData(await toggleLamp(false));
           }}
         >
-          off
-        </button>
-      </div>
+          OFF
+        </Button>
+      </ButtonGroup>
     </>
   );
 };

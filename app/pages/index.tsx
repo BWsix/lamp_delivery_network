@@ -1,3 +1,5 @@
+import Box from "@mui/material/Box";
+import Container from "@mui/material/Container";
 import { Lamp } from "app/components/Lamp";
 import { BlitzPage, Head } from "blitz";
 import { Suspense, useEffect, useRef, useState } from "react";
@@ -49,14 +51,25 @@ const Home: BlitzPage = () => {
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
 
-      <Suspense fallback="loading...">
-        <Lamp />
-      </Suspense>
+      <Container component="main" maxWidth="md">
+        <Box
+          sx={{
+            marginTop: 4,
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+          }}
+        >
+          {!connection && <div>camera unavailable right now</div>}
+          <video muted ref={videoRef} style={{ width: "100%", height: "100%" }} />
 
-      <video muted ref={videoRef} style={{ width: "900px", height: "450px" }} />
-      {!connection && <div>disconnected from the video server now :(</div>}
+          <Suspense fallback="loading...">
+            <Lamp />
+          </Suspense>
+        </Box>
 
-      {error}
+        {error}
+      </Container>
     </>
   );
 };
