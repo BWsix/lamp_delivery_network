@@ -1,4 +1,4 @@
-import { BlitzApiHandler } from "blitz";
+import { BlitzApiRequest, BlitzApiResponse } from "blitz";
 import five from "johnny-five";
 import { createNanoEvents } from "nanoevents";
 
@@ -19,7 +19,7 @@ board.on("ready", () => {
   emitter.on("off", () => relay.close());
 });
 
-const handler: BlitzApiHandler = (req, res) => {
+const handler = (req: BlitzApiRequest, res: BlitzApiResponse) => {
   const { on, off } = req.query;
 
   if (on) {
